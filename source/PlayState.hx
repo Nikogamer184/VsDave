@@ -2035,7 +2035,7 @@ class PlayState extends MusicBeatState
 	}
 
 	var startTimer:FlxTimer;
-	var perfectMode:Bool = false;
+	var perfectMode:Bool = true;
 
 	function voidShader(background:BGSprite)
 	{
