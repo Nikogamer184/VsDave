@@ -259,8 +259,6 @@ class FreeplayState extends MusicBeatState
 				addWeek(['Shredder', 'Greetings', 'Interdimensional', 'Rano'], 4, ['bambi-new', 'tristan-festival', 'dave-festival-3d', 'dave-festival']);
 			case 'joke':
 				addWeek(['Supernovae', 'Glitch', 'Master'], 5, ['bambi-joke']);					if (FlxG.save.data.cheatingFound)
-				addWeek(['Cheating'], 14, ['bambi-3d']);
-				addWeek(['Unfairness'], 15, ['bambi-unfair']);
 				addWeek(['Kabunga'], 6, ['exbungo']);
 				addWeek(['Roofs'], 7, ['baldi']);
 			    addWeek(['Vs-Dave-Rap'], 1, ['dave-cool']);
@@ -418,40 +416,6 @@ class FreeplayState extends MusicBeatState
 			bgShader.shader.uTime.value[0] += elapsed;
 		}
 		#end
-
-		if (InMainFreeplayState)
-		{
-			timeSincePress += elapsed;
-
-			if (timeSincePress > 2 && pressSpeeds.length > 0)
-			{
-				resetPresses();
-			}
-				if (pressSpeeds.length >= pressUnlockNumber && !FlxG.save.data.recursedUnlocked)
-				{
-					var canPass:Bool = true;
-					for (i in 0...pressSpeeds.length)
-					{
-						var pressSpeed = pressSpeeds[i];
-						if (pressSpeed >= 0.5)
-						{
-							canPass = false;
-						}
-					}
-					if (canPass)
-					{
-						recursedUnlock();
-					}
-					else
-					{
-						resetPresses();
-					}
-				}
-			}
-			else
-			{
-				timeSincePress = 0;
-			}
 
 		// Selector Menu Functions
 		if (!InMainFreeplayState) 
