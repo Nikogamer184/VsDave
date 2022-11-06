@@ -155,7 +155,7 @@ jobs:
         with:
           name: macBuild
           path: export/release/macos/bin
-  android-release:
+  buildAndroid:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -213,5 +213,5 @@ jobs:
       - name: Publish Artifact
         uses: actions/upload-artifact@main
         with:
-          name: androidBuild-release
+          name: androidBuild
           path: export/release/android/bin/app/build/outputs/apk/debug
