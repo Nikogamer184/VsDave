@@ -51,10 +51,10 @@ class SaveDataHandler
 			FlxG.save.data.disableFps = false;
 		
 		if (FlxG.save.data.masterWeekUnlocked == null)
-			FlxG.save.data.masterWeekUnlocked = false;
+			FlxG.save.data.masterWeekUnlocked = true;
 
 		if (FlxG.save.data.enteredTerminalCheatingState == null)
-			FlxG.save.data.enteredTerminalCheatingState = false;
+			FlxG.save.data.enteredTerminalCheatingState = true;
 			
 		if (FlxG.save.data.hasSeenCreditsMenu == null)
 			FlxG.save.data.hasSeenCreditsMenu = false;
