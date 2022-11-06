@@ -3908,8 +3908,7 @@ class PlayState extends MusicBeatState
 				{
 					if (!noMiss)
 						noteMiss(daNote.originalType, daNote);
-
-					vocals.volume = 0;
+					    vocals.volume = 0;
 
 					destroyNote(daNote);
 				}
