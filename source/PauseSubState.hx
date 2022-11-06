@@ -20,6 +20,9 @@ import flixel.addons.transition.Transition;
 import flixel.addons.transition.FlxTransitionableState;
 import lime.app.Application;
 import flash.system.System;
+#if desktop
+import Discord.DiscordClient;
+#end
 
 class PauseSubState extends MusicBeatSubstate
 {
