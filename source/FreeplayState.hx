@@ -45,9 +45,8 @@ class FreeplayState extends MusicBeatState
 
 	private var CurrentSongIcon:FlxSprite;
 
-	private var Catagories:Array<String> = ['dave', 'joke', 'extras'];
-	var translatedCatagory:Array<String> = [LanguageManager.getTextString('freeplay_dave'), LanguageManager.getTextString('freeplay_joke'), LanguageManager.getTextString('freeplay_extra')];
-
+	private var Catagories:Array<String> = ['dave', 'joke', 'extras', 'terminal'];
+	var translatedCatagory:Array<String> = [LanguageManager.getTextString('freeplay_dave'), LanguageManager.getTextString('freeplay_joke'), LanguageManager.getTextString('freeplay_extra'), LanguageManager.getTextString('freeplay_terminal')];
 	private var CurrentPack:Int = 0;
 	private var NameAlpha:Alphabet;
 
@@ -144,15 +143,6 @@ class FreeplayState extends MusicBeatState
 			defColor = bg.color;
 			bg.scrollFactor.set();
 			add(bg);
-		}
-		if (FlxG.save.data.terminalFound && !awaitingExploitation)
-		{
-			Catagories = ['dave', 'joke', 'extras', 'terminal'];
-			translatedCatagory = [
-			LanguageManager.getTextString('freeplay_dave'),
-			LanguageManager.getTextString('freeplay_joke'),
-			LanguageManager.getTextString('freeplay_extra'),
-			LanguageManager.getTextString('freeplay_terminal')];
 		}
 
 		for (i in 0...Catagories.length)
