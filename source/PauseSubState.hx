@@ -246,11 +246,6 @@ class PauseSubState extends MusicBeatSubstate
 					FlxG.switchState(new CharacterSelectState());	
 			case "No Miss Mode":
 				PlayState.instance.noMiss = !PlayState.instance.noMiss;
-				if (['exploitation', 'cheating', 'unfairness', 'recursed', 'glitch', 'master', 'supernovae'].contains(PlayState.SONG.song.toLowerCase()))
-				{
-					PlayState.instance.health = 0;
-					close();
-				}
 			case "Chart Editor":
 				if(FlxTransitionableState.skipNextTransIn)
 					Transition.nextCamera = null;
