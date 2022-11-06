@@ -51,6 +51,7 @@ pause_Restart Song==Reiniciar Canción
 pause_Change Character==Cambiar Personaje
 pause_Exit to menu==Salir al menú
 pause_No Miss Mode==Deshabilitar Fallos
+pause_Chart Editor==Editor de chart
 
 // Credits Words //
 supernovae_credit==¡La canción original fue creada por ArchWk!
@@ -348,6 +349,7 @@ credit_Aizakku==Traductor al Portugués-Brasilero
 credit_Soulegal==Traductor al Portugués-Brasilero
 
 //contributors
+credit_M.A. Jigsaw==Programador version de Android
 credit_Steph45==Codigo adicional
 credit_evdial==Artista principal de la semana de Bambi
 credit_wugalex==Artista de fondo del menú

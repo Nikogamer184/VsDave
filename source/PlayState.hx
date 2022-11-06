@@ -9,7 +9,7 @@ import flixel.graphics.frames.FlxFrame;
 import flixel.graphics.FlxGraphic;
 import flixel.addons.transition.Transition;
 import flixel.group.FlxGroup;
-#if desktop
+#if (desktop || android)
 import sys.FileSystem;
 #end
 import flixel.util.FlxArrayUtil;
@@ -36,7 +36,6 @@ import openfl.filters.BitmapFilter;
 import Shaders.PulseEffect;
 import Shaders.BlockedGlitchShader;
 import Shaders.BlockedGlitchEffect;
-import Shaders.DitherEffect;
 import Section.SwagSection;
 import Song.SwagSong;
 import flixel.FlxBasic;
@@ -143,11 +142,11 @@ class PlayState extends MusicBeatState
 
 	public var curbg:BGSprite;
 	public var pre3dSkin:String;
+
 	#if SHADERS_ENABLED
 	public static var screenshader:Shaders.PulseEffect = new PulseEffect();
 	public static var lazychartshader:Shaders.GlitchEffect = new Shaders.GlitchEffect();
 	public static var blockedShader:BlockedGlitchEffect;
-	public var dither:DitherEffect = new DitherEffect();
 	#end
 
 	public var UsingNewCam:Bool = false;
@@ -462,6 +461,9 @@ class PlayState extends MusicBeatState
 				{
 					FileSystem.deleteFile(path);
 				}
+				#elseif android
+				if (FileSystem.exists(SUtil.getPath() + 'help me.txt'))
+					FileSystem.deleteFile(SUtil.getPath() + 'help me.txt');
 				#end
 				Main.toggleFuckedFPS(true);
 
@@ -1053,7 +1055,7 @@ class PlayState extends MusicBeatState
 
 		add(camFollow);
 
-		FlxG.camera.follow(camFollow, LOCKON, 0.01);
+		FlxG.camera.follow(camFollow, LOCKON, 0.04);
 		// FlxG.camera.setScrollBounds(0, FlxG.width, 0, FlxG.height);
 		FlxG.camera.zoom = defaultCamZoom;
 		FlxG.camera.focusOn(camFollow.getPosition());
@@ -3416,7 +3418,8 @@ class PlayState extends MusicBeatState
 						isStoryMode = false;
 						PlayState.storyWeek = 14;
 						FlxG.save.data.cheatingFound = true;
-						FlxG.switchState(new PlayState());
+						FlxG.save.flush();
+						LoadingState.loadAndSwitchState(new PlayState());
 					}));
 					return;
 				case 'cheating':
@@ -3436,7 +3439,8 @@ class PlayState extends MusicBeatState
 						PlayState.SONG = Song.loadFromJson("unfairness"); // you dun fucked up again
 						PlayState.storyWeek = 15;
 						FlxG.save.data.unfairnessFound = true;
-						FlxG.switchState(new PlayState());
+						FlxG.save.flush();
+						LoadingState.loadAndSwitchState(new PlayState());
 					}));
 					return;
 				case 'unfairness':
@@ -3473,23 +3477,25 @@ class PlayState extends MusicBeatState
 					PlayState.SONG = Song.loadFromJson("kabunga"); // lol you loser
 					isStoryMode = false;
 					FlxG.save.data.exbungoFound = true;
+					FlxG.save.flush();
 					shakeCam = false;
 					#if SHADERS_ENABLED
 					screenshader.Enabled = false;
 					#end
-					FlxG.switchState(new PlayState());
+					LoadingState.loadAndSwitchState(new PlayState());
 					return;
 				case 'kabunga':
-					fancyOpenURL("https://benjaminpants.github.io/muko_firefox/index.html"); //banger game
+					FlxG.openURL("https://benjaminpants.github.io/muko_firefox/index.html"); //banger game
 					System.exit(0);
 				case 'vs-dave-rap':
 					PlayState.SONG = Song.loadFromJson("vs-dave-rap-two");
 					FlxG.save.data.vsDaveRapTwoFound = true;
+					FlxG.save.flush();
 					shakeCam = false;
 					#if SHADERS_ENABLED
 					screenshader.Enabled = false;
 					#end
-					FlxG.switchState(new PlayState());
+					LoadingState.loadAndSwitchState(new PlayState());
 					return;
 				default:
 					#if SHADERS_ENABLED
@@ -5566,10 +5572,7 @@ class PlayState extends MusicBeatState
 						defaultCamZoom += 0.3;
 					case 1200:
 						#if SHADERS_ENABLED
-						if(CompatTool.save.data.compatMode != null && CompatTool.save.data.compatMode == false)
-							{
-								camHUD.setFilters([new ShaderFilter(blockedShader.shader)]);
-							}
+						camHUD.setFilters([new ShaderFilter(blockedShader.shader)]);
 						#end
 						FlxTween.tween(black, {alpha: 0.7}, (Conductor.stepCrochet / 1000) * 8);
 					case 1216:
@@ -6391,6 +6394,9 @@ class PlayState extends MusicBeatState
 							FlxTween.tween(Application.current.window, {x: windowProperties[0], y: windowProperties[1], width: windowProperties[2], height: windowProperties[3]}, 1, {ease: FlxEase.circInOut});
 							FlxTween.tween(iconP2, {alpha: 0}, 1, {ease: FlxEase.bounceOut});
 						}
+						#else
+						dad.visible = false;
+						FlxTween.tween(iconP2, {alpha: 0}, 1, {ease: FlxEase.bounceOut});
 						#end
 					case 2083:
 						#if android
@@ -6588,10 +6594,7 @@ class PlayState extends MusicBeatState
 
 						defaultCamZoom += 0.2;
 						#if SHADERS_ENABLED
-						if(CompatTool.save.data.compatMode != null && CompatTool.save.data.compatMode == false)
-						{
-							camHUD.setFilters([new ShaderFilter(blockedShader.shader)]);
-						}
+						camHUD.setFilters([new ShaderFilter(blockedShader.shader)]);
 						#end
 						FlxTween.tween(black, {alpha: 0.6}, 1);
 						makeInvisibleNotes(true);
@@ -6600,10 +6603,7 @@ class PlayState extends MusicBeatState
 						defaultCamZoom += 0.1;
 					case 1568:
 						#if SHADERS_ENABLED
-						if(CompatTool.save.data.compatMode != null && CompatTool.save.data.compatMode == false)
-							{
-								camHUD.setFilters([new ShaderFilter(blockedShader.shader)]);
-							}
+						camHUD.setFilters([new ShaderFilter(blockedShader.shader)]);
 						#end
 						defaultCamZoom += 0.1;
 					case 1584:
@@ -6611,10 +6611,7 @@ class PlayState extends MusicBeatState
 						defaultCamZoom += 0.1;
 					case 1600:
 						#if SHADERS_ENABLED
-						if(CompatTool.save.data.compatMode != null && CompatTool.save.data.compatMode == false)
-							{
-								camHUD.setFilters([new ShaderFilter(blockedShader.shader)]);
-							}
+						camHUD.setFilters([new ShaderFilter(blockedShader.shader)]);
 						#end
 						defaultCamZoom += 0.1;
 					case 1616:
@@ -6622,10 +6619,7 @@ class PlayState extends MusicBeatState
 						defaultCamZoom += 0.1;
 					case 1632:
 						#if SHADERS_ENABLED
-						if(CompatTool.save.data.compatMode != null && CompatTool.save.data.compatMode == false)
-							{
-								camHUD.setFilters([new ShaderFilter(blockedShader.shader)]);
-							}
+						camHUD.setFilters([new ShaderFilter(blockedShader.shader)]);
 						#end
 						defaultCamZoom += 0.1;
 					case 1648:
