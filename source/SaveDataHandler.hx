@@ -44,9 +44,6 @@ class SaveDataHandler
 		if (FlxG.save.data.wasInCharSelect == null)
 			FlxG.save.data.wasInCharSelect = false;
 
-		if (FlxG.save.data.charactersUnlocked == null)
-			FlxG.save.data.charactersUnlocked = ['bf', 'bf-pixel'];
-
 		if (FlxG.save.data.disableFps == null)
 			FlxG.save.data.disableFps = false;
 		
