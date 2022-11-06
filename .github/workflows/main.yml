@@ -116,7 +116,7 @@ buildLinux:
         uses: actions/upload-artifact@v2.2.4
         with:
           name: linuxBuild
-          path: 'export/release/linux/bin'
+          path: export/release/linux/bin
   buildWindows:
     runs-on: windows-latest
 
