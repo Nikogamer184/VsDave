@@ -268,19 +268,13 @@ class FreeplayState extends MusicBeatState
 				addWeek(['Splitathon'], 3, ['the-duo']);
 				addWeek(['Shredder', 'Greetings', 'Interdimensional', 'Rano'], 4, ['bambi-new', 'tristan-festival', 'dave-festival-3d', 'dave-festival']);
 			case 'joke':
-					addWeek(['Supernovae', 'Glitch', 'Master'], 5, ['bambi-joke']);					if (FlxG.save.data.cheatingFound)
-					addWeek(['Cheating'], 14, ['bambi-3d']);
-					addWeek(['Unfairness'], 15, ['bambi-unfair']);
-					addWeek(['Kabunga'], 6, ['exbungo']);
-				
-				if (FlxG.save.data.roofsUnlocked)
-					addWeek(['Roofs'], 7, ['baldi']);
-
+				addWeek(['Supernovae', 'Glitch', 'Master'], 5, ['bambi-joke']);					if (FlxG.save.data.cheatingFound)
+				addWeek(['Cheating'], 14, ['bambi-3d']);
+				addWeek(['Unfairness'], 15, ['bambi-unfair']);
+				addWeek(['Kabunga'], 6, ['exbungo']);
+				addWeek(['Roofs'], 7, ['baldi']);
 			    addWeek(['Vs-Dave-Rap'], 1, ['dave-cool']);
-				if(FlxG.save.data.vsDaveRapTwoFound)
-				{
-					addWeek(['Vs-Dave-Rap-Two'], 1, ['dave-cool']);
-				}
+				addWeek(['Vs-Dave-Rap-Two'], 1, ['dave-cool']);
 			case 'extras':
 				addWeek(['Recursed'], 10, ['recurser']);
 			    addWeek(['Bonus-Song'], 1, ['dave']);
