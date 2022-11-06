@@ -268,18 +268,9 @@ class FreeplayState extends MusicBeatState
 				addWeek(['Splitathon'], 3, ['the-duo']);
 				addWeek(['Shredder', 'Greetings', 'Interdimensional', 'Rano'], 4, ['bambi-new', 'tristan-festival', 'dave-festival-3d', 'dave-festival']);
 			case 'joke':
-				if (FlxG.save.data.hasPlayedMasterWeek)
-				{
-					addWeek(['Supernovae', 'Glitch', 'Master'], 5, ['bambi-joke']);
-				}				
-				if (!FlxG.save.data.terminalFound)
-				{
-					if (FlxG.save.data.cheatingFound)
-						addWeek(['Cheating'], 14, ['bambi-3d']);
-					if (FlxG.save.data.unfairnessFound)
-						addWeek(['Unfairness'], 15, ['bambi-unfair']);
-				}
-				if (FlxG.save.data.exbungoFound)
+					addWeek(['Supernovae', 'Glitch', 'Master'], 5, ['bambi-joke']);					if (FlxG.save.data.cheatingFound)
+					addWeek(['Cheating'], 14, ['bambi-3d']);
+					addWeek(['Unfairness'], 15, ['bambi-unfair']);
 					addWeek(['Kabunga'], 6, ['exbungo']);
 				
 				if (FlxG.save.data.roofsUnlocked)
@@ -291,8 +282,7 @@ class FreeplayState extends MusicBeatState
 					addWeek(['Vs-Dave-Rap-Two'], 1, ['dave-cool']);
 				}
 			case 'extras':
-				if (FlxG.save.data.recursedUnlocked)
-					addWeek(['Recursed'], 10, ['recurser']);
+				addWeek(['Recursed'], 10, ['recurser']);
 			    addWeek(['Bonus-Song'], 1, ['dave']);
 				addWeek(['Bot-Trot'], 9, ['playrobot']);
 				addWeek(['Escape-From-California'], 11, ['moldy']);
@@ -303,13 +293,9 @@ class FreeplayState extends MusicBeatState
 				addWeek(['Indignancy'], 2, ['bambi-angey']);
 				addWeek(['Memory'], 1, ['dave']);
 			case 'terminal':
-				if (FlxG.save.data.cheatingFound)
-					addWeek(['Cheating'], 14, ['bambi-3d']);
-				if (FlxG.save.data.unfairnessFound)
-					addWeek(['Unfairness'], 15, ['bambi-unfair']);
-				if (FlxG.save.data.exploitationFound)
-					addWeek(['Exploitation'], 16, ['expunged']);
-
+				addWeek(['Cheating'], 14, ['bambi-3d']);
+				addWeek(['Unfairness'], 15, ['bambi-unfair']);
+				addWeek(['Exploitation'], 16, ['expunged']);
 				addWeek(['Enter Terminal'], 17, ['terminal']);
 		}
 	}
